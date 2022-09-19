@@ -26,10 +26,10 @@ function Success (props) {
         let data = values
         axios.post('/create-pdf', data)
             .then( e => 
-            {   
+            {   console.log(e)
                 axios.get('/fetch-pdf', { responseType: 'blob' })
                 .then((res) => {
-//                     console.log(res
+                    console.log(res)
                     const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
     
                     saveAs(pdfBlob, 'Resume.pdf');
