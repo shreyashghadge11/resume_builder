@@ -38,7 +38,7 @@ function Success (props) {
             
             }
             )
-            .catch(e=>console.log(e,'create'))
+            .catch(e=>console.log(e,'create',e.config.data))
             
 
     };
