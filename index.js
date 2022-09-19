@@ -22,14 +22,12 @@ app.use(bodyparser.urlencoded({extended:false}));
 app.post('/create-pdf', (req, res) => {
     pdf.create(resume_template(req.body), {}).toFile('Resume.pdf', (err) => {
         if(err){
+            res.send(Promise.reject());
             console.log(err);
-
-            return res.status(400).json(err);
         }
 
-        
+        res.send(Promise.resolve());
         console.log('Success');
-        return res.json('Pdf Generated');
     });
 });
 
