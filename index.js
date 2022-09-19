@@ -37,9 +37,12 @@ app.get('/fetch-pdf', (req,res) => {
 
 app.use("/", express.static(path.join(__dirname, "/my-app/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/my-app/build/index.html"));
-});
+if(process.env.NODE_ENV === 'production'){
+//         const path  =  require('path');
+        app.get('/*',(req,res)=>{
+            res.sendfile(path.resolve(__dirname,'my-app','build','index.html'))
+        })
+    }
 
 app.listen(port, () => {
   console.log(`server up and running on ${port}`);
