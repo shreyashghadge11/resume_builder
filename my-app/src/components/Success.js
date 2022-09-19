@@ -22,7 +22,7 @@ function Success (props) {
 
     const download =  e => {
         e.preventDefault();
-
+        // console.log(education);
         let data = values
         axios.post('/create-pdf', data)
             .then( e => 
@@ -34,11 +34,14 @@ function Success (props) {
     
                     saveAs(pdfBlob, 'Resume.pdf');
                 })
+                .catch(e=>console.log(e,'fetch'))
             
             }
-            );
+            )
+            .catch(e=>console.log(e,'create'))
+            
 
-     };
+    };
 
 
     
