@@ -23,17 +23,17 @@ function Success (props) {
     const download = async e => {
         e.preventDefault();
         // console.log(education);
-        let data = values
-        await axios.post('/create-pdf', data)
-            .then(async e => {await axios.get('/fetch-pdf', { responseType: 'blob' })})
+        const data = values
+        console.log(data);
+        
+        axios.post('/create-pdf', data)
+            .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
             .then((res) => {
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
                 saveAs(pdfBlob, 'Resume.pdf');
             });
 
-        
-        // props.prevStep();
     };
 
 
