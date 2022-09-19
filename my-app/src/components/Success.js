@@ -20,15 +20,19 @@ function Success (props) {
         props.prevStep();
     };
 
-    const download = async e => {
+    const download =  e => {
         e.preventDefault();
         // console.log(education);
         const data = values
         console.log(data);
         
         axios.post('/create-pdf', data)
-            .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
+            .then((res) =>{ 
+                console.log('1',res)
+                axios.get('fetch-pdf', { responseType: 'blob' })
+            })
             .then((res) => {
+                console.log('2',res)
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
                 saveAs(pdfBlob, 'Resume.pdf');
