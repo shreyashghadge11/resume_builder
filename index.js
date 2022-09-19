@@ -20,6 +20,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
 
 app.post('/create-pdf', (req, res) => {
+    console.log(req.body)
     pdf.create(resume_template(req.body), {}).toFile('Resume.pdf', (err) => {
         if(err){
             // res.send(Promise.reject());
