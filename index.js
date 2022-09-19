@@ -25,7 +25,7 @@ app.post('/create-pdf', (req, res) => {
         if(err){
             // res.send(Promise.reject());
             console.log(err);
-            return res.status(400).json('Failed')
+            return res.status(400).json(err)
         }
 
         // res.send(Promise.resolve());
