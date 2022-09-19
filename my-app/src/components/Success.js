@@ -22,23 +22,23 @@ function Success (props) {
 
     const download =  e => {
         e.preventDefault();
-        // console.log(education);
-        const data = values
-        console.log(data);
-        
+
+        let data = values
         axios.post('/create-pdf', data)
-            .then((res) =>{ 
-                console.log('1',res)
-                axios.get('fetch-pdf', { responseType: 'blob' })
-            })
-            .then((res) => {
-                console.log('2',res)
-                const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+            .then( e => 
+            {   
+                axios.get('/fetch-pdf', { responseType: 'blob' })
+                .then((res) => {
+//                     console.log(res
+                    const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+    
+                    saveAs(pdfBlob, 'Resume.pdf');
+                })
+            
+            }
+            );
 
-                saveAs(pdfBlob, 'Resume.pdf');
-            });
-
-    };
+     };
 
 
     
