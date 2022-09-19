@@ -20,12 +20,12 @@ function Success (props) {
         props.prevStep();
     };
 
-    const download = e => {
+    const download = async e => {
         e.preventDefault();
         // console.log(education);
         let data = values
-        axios.post('/create-pdf', data)
-            .then(() => axios.get('/fetch-pdf', { responseType: 'blob' }))
+        await axios.post('/create-pdf', data)
+            .then(async e => {await axios.get('/fetch-pdf', { responseType: 'blob' })})
             .then((res) => {
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
